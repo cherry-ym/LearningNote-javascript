@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+</head>
+<body>
+    <div id="box">
+        {{10 + 20}}
+        <p>{{myname}}</p>
+    </div>
+    <div>
+        {{10 + 20}}
+    </div>
+
+    <script>
+        var vm = new Vue({
+            el:"#box",      //vue渲染开始的地方
+            data:{
+                myname: 'ym'
+            }     //状态
+        })
+    </script>
+</body>
+</html>
