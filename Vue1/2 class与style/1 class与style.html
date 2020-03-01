@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+</head>
+<body>
+    <div id="box">
+        <div style="background: brown;">111111111111</div>
+        <button @click = "handleClick()">click</button>
+        <div :class="isActive?'red':'yellow'">我是动态绑定class-三目写法</div>
+        <div :class="classobj">我是动态绑定class-对象写法</div>
+        <div :class="classarr">我是动态绑定class-数组写法</div>
+    </div>
+
+    <script>
+        var vm = new  Vue({
+            el: '#box',
+            data: {
+                isActive: true,
+                classobj:{
+                    a:true,
+                    b:true
+                    //a b是class名字
+                },
+                classarr: ['a','b']
+            },
+            methods: {
+                handleClick(){
+                    this.isActive = !this.isActive
+                }
+            }
+        })
+    </script>
+</body>
+</html>
