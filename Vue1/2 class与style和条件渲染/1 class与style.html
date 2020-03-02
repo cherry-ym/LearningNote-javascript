@@ -13,6 +13,10 @@
         <div :class="isActive?'red':'yellow'">我是动态绑定class-三目写法</div>
         <div :class="classobj">我是动态绑定class-对象写法</div>
         <div :class="classarr">我是动态绑定class-数组写法</div>
+
+        <div :style="'background:' + (isActive?'red':'yellow')">我是动态绑定style-三目写法</div>
+        <div :style="styleobj">我是动态绑定style-对象写法</div>
+        <div :style="stylearr">我是动态绑定style-数组写法</div>
     </div>
 
     <script>
@@ -25,7 +29,11 @@
                     b:true
                     //a b是class名字
                 },
-                classarr: ['a','b']
+                classarr: ['a','b'],
+                styleobj:{
+                    background:"red"
+                },
+                stylearr:[]
             },
             methods: {
                 handleClick(){

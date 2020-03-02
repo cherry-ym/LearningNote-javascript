@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .active{
+            background: brown;
+        }
+    </style>
+    <script src="../vue.js"></script>
+</head>
+<body>
+    <div id="box">
+        <ul>
+            <li v-for="(data,index) in datalist" key="data.id">
+                {{data}}--{{index}}
+            </li>
+        </ul>
+        <ul>
+            <li v-for="(data,index) of datalist">
+                {{data}}--{{index}}
+            </li>
+        </ul>
+
+        <ul>
+            <li v-for="(data,key) in obj">
+                {{data}}--{{key}}
+            </li>
+        </ul>
+        <ul>
+            <li v-for="(data,key) of obj">
+                {{data}}--{{key}}
+            </li>
+        </ul>
+    </div>
+
+    <script>
+        var vm = new Vue({
+            el:"#box",
+            data:{
+                datalist:["111","222","333"],
+                obj:{
+                    name:"Kris",
+                    age:100,
+                    location:"beijing"
+                }
+            }
+        })
+    </script>
+</body>
+</html>
