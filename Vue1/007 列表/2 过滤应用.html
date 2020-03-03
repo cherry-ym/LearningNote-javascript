@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.js" type="text/javascript"></script>
+</head>
+<body>
+    <div id="box">
+        <input type="text" @input="handleInput()" v-model="mytext"/>
+        <!-- <input type="text" @change="handleInput()"> -->
+        <ul>
+            <li v-for="data in datalist">
+                {{data}}
+            </li>
+        </ul>
+
+    </div>
+
+    <script>
+        var vm = new Vue({
+            el:"#box",
+            data:{
+                mytext: '',
+                datalist:['aaa','bbb','ccc','ddd','add','cee','eee'],
+                list:['aaa','bbb','ccc','ddd','add','cee','eee']
+            },
+            methods:{
+                handleInput(){
+                    console.log(this.mytext);
+                    //console.log("只要value改变，就会触发")
+                    //利用输入框的字符，过滤出包含输入字段的元素
+
+                    //filter 过滤
+                    var newArr = this.list.filter(item => item.indexOf(this.mytext) > -1);
+                    //console.log(newArr,this.datalist);    //原数组不会改变
+                    this.datalist = newArr;    //回不到原来的datalist，只能进行一次过滤
+
+                }
+            }
+        })
+
+        var arr = [1,2,3,4,5];
+        var newArr = arr.filter(item=>item > 3);
+        console.log(newArr);
+    </script>
+</body>
+</html>

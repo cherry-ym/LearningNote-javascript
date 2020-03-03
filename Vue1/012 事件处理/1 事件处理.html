@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="../vue.js"></script>
+</head>
+<body>
+    <div id="box">
+        <button @click = "handleClick">click1</button>
+        <button @click = "handleClick()">click2</button>
+        <!-- <button @click = "isShow=!isShow">click3</button>       当函数逻辑特别简单时使用 -->
+
+        <div v-show="isShow">11111111111111</div>
+
+        <ul @click.self="handleUlClick()">
+            <!-- .self事件修饰符,没有阻止冒泡，使自己点自己时才触发 -->
+            <li @click.stop="handleLiClick($event)">1111</li>
+            <!-- .stop事件修饰符,阻止冒泡 -->
+            <li @click="handleLiClick()">22222</li>
+            <li @click.once="handleLiClick()">3333</li>
+            <!-- .once事件修饰符,只执行一次 -->
+        </ul>
+
+        <a href="http://www.baidu.com" @click.prevent="handleChangePage()">hhhhh</a>
+        <!-- 事件修饰符 -->
+    </div>
+
+    <script>
+        new Vue({
+            el:"#box",
+            data:{
+                isShow:false
+            },
+            methods:{
+                handleClick(){
+                    this.isShow = !this.isShow;
+                },
+                handleLiClick(ev){
+                    //ev.stopPropagation();
+                    console.log("li click");
+                },
+                handleUlClick(){
+                    console.log("ul click");
+                },
+                handleChangePage(){
+                    console.log("handleChangePage");
+                }
+            }
+        })
+    </script>
+</body>
+</html>
