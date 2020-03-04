@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="../vue.js"></script>
+</head>
+<body>
+    <div id="box">
+        <input type="text" v-model="mytext"/>
+        {{mytext}}
+        <textarea v-model="mytext"></textarea>
+
+        <br>
+        <input type="checkbox" v-model="isChecked">记录用户名
+
+        <br>
+        <p>你喜欢的运动有哪些？
+            <input type="checkbox" v-model="checkgroup" value="swim">游泳
+            <input type="checkbox" v-model="checkgroup" value="bord">滑板
+            <input type="checkbox" v-model="checkgroup" value="skit">滑冰
+            <input type="checkbox" v-model="checkgroup" value="weight">举重
+        </p>
+        {{checkgroup}}
+
+        <p>你喜欢的开发语言？
+            <input type="radio" v-model="picked" value="php">php
+            <input type="radio" v-model="picked" value="JS">JS
+            <input type="radio" v-model="picked" value="JAVA">JAVA
+            <input type="radio" v-model="picked" value="python">python
+        </p>
+        {{picked}}
+    </div>
+
+    <script type="text/javascript">
+        var vm = new Vue({
+            el:"#box",
+            data:{
+                mytext:'',
+                isChecked:false,
+                checkgroup:[],
+                picked:""
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="../vue.js"></script>
+</head>
+<body>
+    <div id="box">
+        <ul>
+            <li v-for="data in datalist">
+                <input type="checkbox" v-model="checkgroup" :value="data">
+                {{data}}
+            </li>
+        </ul>
+
+        {{checkgroup}}
+        <p>总金额计算:{{ getsum() }}</p>
+    </div>
+
+    <script>
+        var vm = new Vue({
+            el:"#box",
+            data:{
+                checkgroup:[],
+                datalist:[
+                    {
+                        name:"商品1",
+                        price:10,
+                        number:1,
+                        id:"1"
+                    },
+                    {
+                        name:"商品2",
+                        price:100,
+                        number:2,
+                        id:"2"
+                    },
+                    {
+                        name:"商品3",
+                        price:30,
+                        number:3,
+                        id:"3"
+                    }
+
+                ]
+            },
+            methods:{
+                getsum(){
+                    //函数计算中的状态改变后，函数会自动执行一遍
+                    var sum = 0;
+                    for(var i in this.checkgroup){
+                        sum += this.checkgroup[i].number * this.checkgroup[i].price;
+                    }
+                    return sum;
+                }
+            }
+        })
+    </script>
+</body>
+</html>

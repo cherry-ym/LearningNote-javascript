@@ -25,6 +25,9 @@
 
         <a href="http://www.baidu.com" @click.prevent="handleChangePage()">hhhhh</a>
         <!-- 事件修饰符 -->
+
+        <input type="text" @keyup.enter="handleKeyup($event)">
+        <input type="text" @keyup.13="handleKeyup($event)">
     </div>
 
     <script>
@@ -46,6 +49,14 @@
                 },
                 handleChangePage(){
                     console.log("handleChangePage");
+                },
+
+                handleKeyup(ev){
+                    //console.log(ev);
+                    // if(ev.keyCode===13){
+                    //     console.log("执行todolist 添加动作");
+                    // }
+                    console.log("执行todolist 添加动作");
                 }
             }
         })
