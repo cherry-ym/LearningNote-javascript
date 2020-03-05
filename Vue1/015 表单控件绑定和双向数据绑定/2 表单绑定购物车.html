@@ -8,10 +8,14 @@
 </head>
 <body>
     <div id="box">
+        <input type="checkbox" @change="handleChange" v-model="isAllChecked">
         <ul>
             <li v-for="data in datalist">
-                <input type="checkbox" v-model="checkgroup" :value="data">
+                <input type="checkbox" v-model="checkgroup" :value="data" @change="handleLiChange">
                 {{data}}
+                <button @click="handleDelClick(data)">del</button>
+                {{data.number}}
+                <button @click="data.number++">add</button>
             </li>
         </ul>
 
@@ -23,6 +27,7 @@
         var vm = new Vue({
             el:"#box",
             data:{
+                isAllChecked:false,
                 checkgroup:[],
                 datalist:[
                     {
@@ -54,6 +59,31 @@
                         sum += this.checkgroup[i].number * this.checkgroup[i].price;
                     }
                     return sum;
+                },
+
+                handleChange(){
+                    console.log("改变了",this.isAllChecked);
+                    if(this.isAllChecked){
+                        this.checkgroup = this.datalist;
+                    }else{
+                        this.checkgroup = [];
+                    }
+                },
+
+                handleLiChange(){
+                    console.log("handleLiChange-判断是不是都勾选");
+                    if(this.checkgroup.length === this.datalist.length){
+                        this.isAllChecked = true;
+                    }else{
+                        this.isAllChecked = false;
+                    }
+                },
+
+                handleDelClick(data){
+                    var number = data.number--;
+                    if(number <= 1){
+                        data.number = 1;
+                    }
                 }
             }
         })

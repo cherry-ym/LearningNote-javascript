@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="../vue.js"></script>
+</head>
+<body>
+    <div id="box">
+
+    </div>
+
+    <script type="text/javascript">
+        fetch("test.json").then(res=>res.json()).then(res=>{
+            console.log(res)
+        })
+    </script>
+</body>
+</html>
