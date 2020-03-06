@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="../vue.js"></script>
+</head>
+<body>
+    <div id="box">
+        {{myname.substring(0,1).toUpperCase() + myname.substring(1)}}
+        
+        <p>计算属性：{{getMyName}}</p>
+        <!-- 定义时候像函数，使用起来像属性，所以getMyName不能加（） -->
+        <!-- 方法调用几次就执行几次，计算属性的结果会缓存，调用即可，只执行一次，页面刷新就释放 -->
+        <p>普通方法：{{getMyNameMethod()}}</p>
+
+        <div>
+            也需要计算结果
+            <p>计算属性：{{getMyName}}</p>
+            <p>普通方法：{{getMyNameMethod()}}</p>
+        </div>
+    </div>
+
+    <script>
+        var vm = new Vue({
+            el:"#box",
+            data:{
+                myname:"xiaoming"
+            },
+            methods:{
+                getMyNameMethod(){
+                    console.log("getMyNameMethod-方法调用");
+                    return this.myname.substring(0,1).toUpperCase() + this.myname.substring(1);
+                }
+            },
+            computed:{
+                getMyName(){
+                    console.log("getMyNameMethod-计算属性调用")
+                    return this.myname.substring(0,1).toUpperCase() + this.myname.substring(1);
+                }//依赖的状态改变了，计算属性会重新计算一遍， 计算属性会缓存
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.js" type="text/javascript"></script>
+</head>
+<body>
+    <!-- 过滤应用的改进 -->
+    <div id="box">
+        <input type="text" v-model="mytext"/>
+        <!-- <input type="text" @change="handleInput()"> -->
+        <ul>
+            <li v-for="data in getMyDatalist">
+                {{data}}
+            </li>
+        </ul>
+
+    </div>
+
+    <script>
+        var vm = new Vue({
+            el:"#box",
+            data:{
+                mytext: '',
+                datalist:['aaa','bbb','ccc','ddd','add','cee','eee'],
+            },
+            computed:{
+                getMyDatalist(){
+                    return this.datalist.filter(item=>item.indexOf(this.mytext) > -1);
+                }
+            }
+        })
+
+        var arr = [1,2,3,4,5];
+        var newArr = arr.filter(item=>item > 3);
+        console.log(newArr);
+    </script>
+</body>
+</html>
