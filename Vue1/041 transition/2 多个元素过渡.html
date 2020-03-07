@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="../vue.js"></script>
+    <style>
+        /* .ym-enter-active,.ym-leave-active{
+            transition: all 2s;
+        }
+        .ym-enter,.ym-leave-to{
+            opacity: 0;
+            transform: translateX(100px);
+        } */
+
+        .ym-enter-active{
+            animation: bounce-in .5s;
+        }
+        .ym-leave-active{
+            animation: bounce-in .5s reverse;
+        }
+        @keyframes bounce-in {
+            0%{
+                opacity: 0;
+                transform: translateX(100px);
+            }
+
+            100%{
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="box">
+        <button @click="isShow=!isShow">click</button>
+
+        <transition name="ym" mode="in-out"> 
+            <!-- in-out  1先来2再走        -->
+            <p v-if="isShow">1111111111111</p>
+            <!-- <p v-show="isShow">2222222222222</p>        会报错，transition里的元素互斥 -->
+            <!-- <p v-else>2222222222222</p>     不能实现，根据diff算法，由于还是p标签所以只替换内容，动画不会展示 -->
+            <div v-else>22222222222</div>
+        </transition>
+
+        <transition name="ym" mode="out-in">
+            <p v-if="isShow" key="1">111111111111</p>   
+            <!-- 此时两个p标签可以实现动画效果 -->
+            <p v-else key="2">2222222222</p>
+        </transition>
+    </div>
+
+    <script>
+        var vm = new Vue({
+            el:"#box",
+            data:{
+                isShow:false
+            }
+        })
+    </script>
+</body>
+</html>

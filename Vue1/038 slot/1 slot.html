@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="../vue.js"></script>
+</head>
+<body>
+    <div id="box">
+        <child>
+            <!-- <div>aaaaaaaa</div>     不会显示 想要父组件放入孩子组件里要用slot-->
+            <div slot="a">aaaaaaaa</div>
+            <div slot="b">bbbbbbbb</div>
+        </child>
+        <swiper>
+            <li v-for="data in datalist">
+                {{data}}
+            </li>
+        </swiper>
+    </div>
+
+    <script>
+        Vue.component("child",{
+            template:`<div>
+                <slot name="a"></slot>
+                child
+                <slot name="b"></slot>
+            </div>`
+        })
+
+        Vue.component("swiper",{
+            template:`<div>
+                <ul>
+                    <slot></slot>
+                </ul>
+            </div>`
+        })
+
+        new Vue({
+            el:"#box",
+            data:{
+                datalist:["11111","22222","33333"]
+            }
+        })
+    </script>
+</body>
+</html>
