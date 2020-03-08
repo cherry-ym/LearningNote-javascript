@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="../vue.js"></script>
+    <link rel="stylesheet" href="swiper.css">
+    <script src="swiper.js"></script>
+</head>
+<body>
+    <div id="box">
+
+        <swiper>
+            <div class="swiper-slide" v-for="data in datalist">
+                {{data}}
+            </div>
+        </swiper>
+    </div>
+
+    <script>
+        Vue.component("swiper",{
+            template:`<div class="swiper-container a">
+                <div class="swiper-wrapper">
+                    <slot></slot>
+                </div>
+                <!-- 如果需要分页器 -->
+                <div class="swiper-pagination"></div>
+            </div>`,
+
+            updated(){
+                new Swiper('.a',{
+                    loop:true,
+                    pagination:{
+                        el:'.swiper-pagination',
+                    }
+                })
+            }
+        })
+        new Vue({
+            el:"#box",
+            data:{
+                datalist:[]
+            },
+            mounted(){
+                setTimeout(() => {
+                    this.datalist=["1111","22222","33333"]
+                }, 2000)
+            }
+        })
+    </script>
+</body>
+</html>

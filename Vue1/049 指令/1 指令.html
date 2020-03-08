@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="../vue.js"></script>
+</head>
+<body>
+    <div id="box">
+        <div v-hello="'plum'">1111111</div>
+        <div v-hello="'brown'">2222222</div>
+        <div v-hello="mycolor">3333333</div>
+    </div>
+
+    <script>
+        //自定义v-    用来操作底层dom
+        Vue.directive("hello", {
+            inserted(el,bind){       //el拿到的是用了v-hello的dom节点
+                //指令生命周期-创建阶段
+                //console.log("当前节点插入到父节点中")
+                //console.log(el);
+                //console.log(bind);      拿到的是个对象
+                el.style.background=bind.value;
+            },
+            update(el,bind){
+                //指令生命周期-更新  与组件阶段区分
+                el.style.background=bind.value;
+            }
+        })
+
+        var vm = new Vue({
+            el:"#box",
+            data:{
+                mycolor:"red"
+            }
+        })
+    </script>
+</body>
+</html>

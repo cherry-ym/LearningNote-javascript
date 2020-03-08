@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Examples</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+
+<script type="text/javascript" src="../vue.js"></script>
+<link rel="stylesheet" href="swiper.css">
+<script src="swiper.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+<style>
+  .swiper-container {
+      width: 600px;
+      height: 300px;
+  }  
+
+  .swiper-slide img{
+    width: 100%;
+  }
+</style>
+</head>
+<body>
+   
+    <div id="box">
+      
+      <swiper :key="datalist.length"> 
+        <div class="swiper-slide" v-for="data in datalist">
+          {{data}}
+        </div>
+      </swiper>
+    </div>
+
+    <script type="text/javascript">
+       Vue.component("swiper",{
+         template:` <div :class="'swiper-container ' + which">
+            <div class="swiper-wrapper">
+                <slot></slot>
+            </div>
+            <!-- 如果需要分页器 -->
+            <div class="swiper-pagination"></div>
+          
+          </div>`,
+
+          data(){
+            return {
+              which:"a"
+            }
+          },
+
+          mounted(){
+            console.log("swiper-mounted")
+            new Swiper ('.a',{
+                // direction: 'vertical'
+                loop:true,
+                    // 如果需要分页器
+                pagination: {
+                  el: '.swiper-pagination',
+                }
+            })
+          }
+       })
+      
+       new Vue({
+         el:"#box",
+         data:{
+          datalist:[],
+          // which:"a"
+         },
+         mounted() {
+          console.log("root-mounted")
+           setTimeout(()=>{
+              this.datalist= ["1111","22222","33333"]
+           },2000)
+         },
+       })
+
+      //  obox.className = "swiper-contrian "+which
+    </script>
+</body>
+</html>
